@@ -1,3 +1,8 @@
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import { terser } from 'rollup-plugin-terser';
+
 module.exports = {
     input: './src/index.js',
     output: {
@@ -7,8 +12,16 @@ module.exports = {
     },
     plugins: [
         babel({
+            babelHelpers: 'bundled',
+            exclude: 'node_modules/**',
             sourcemaps: true,
             presets: [['@babel/preset-env',
-               { targets: '> 0.25%, not dead' }]],
+               { useBuiltIns: 'usage', 
+                 corejs: 2,
+                 targets: '> 0.25%, not dead' }]],
         }),
-    ]};
+        resolve(),
+        commonjs(),
+        terser(),
+    ],
+};
