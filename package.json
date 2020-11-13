@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "browser-sync": "browser-sync start --server --files \"*\"",
-    "test": "eslint ./src/index.js ./src/*.js",
+    "test": "eslint ./src/index.js ./src/*.js --fix",
     "build": "rollup -c",
     "rollup-watch": "rollup -c -w",
     "dev": "concurrently npm:browser-sync npm:build"

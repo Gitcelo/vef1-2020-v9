@@ -1,8 +1,6 @@
-import { fetchEarthquakes } from './lib/earthquakes.js';
-import { createPopup, init } from './lib/map.js';
-import { el, element, formatDate } from './lib/utils.js';
-import L from 'leaflet';
-const URL = './4.5_week.geojson';
+import { fetchEarthquakes } from './lib/earthquakes';
+import { createPopup, init } from './lib/map';
+import { el, element, formatDate } from './lib/utils';
 
 function hideLoading() {
   const load = document.querySelector('.loading');
@@ -17,8 +15,7 @@ async function getgeoJson() {
 async function addgeoJson() {
   const data = await getgeoJson();
   if (data === null) {
-    console.log('Ekki séns');
-    return
+    return;
   }
   const ulist = document.querySelector('.earthquakes');
   data.forEach((featured) => {
@@ -28,9 +25,7 @@ async function addgeoJson() {
       element('a',
         { href: featured.properties.url, target: '_blank' },
         {},
-        'Skoða nánar'
-      )
-    );
+        'Skoða nánar'));
     const marker = createPopup(featured, content);
     ulist.appendChild(
       el('li',
@@ -40,22 +35,16 @@ async function addgeoJson() {
             el('dt', 'Tími'),
             el('dd', `${formatDate(featured.properties.time)}`),
             el('dt', 'Styrkur'),
-            el('dd', featured.properties.mag + ' á Richter')
-          ),
+            el('dd', `${featured.properties.mag} á Richter`)),
           el('div',
             element('button',
               { class: 'buttons' },
               { click: () => { marker.openPopup(); } },
-              'Sjá á korti'
-            ),
+              'Sjá á korti'),
             element('a',
               { href: featured.properties.url, target: '_blank' },
               {},
-              'Skoða nánar'
-            )
-          )
-        )
-      )
+              'Skoða nánar')))),
     );
   });
   hideLoading();
