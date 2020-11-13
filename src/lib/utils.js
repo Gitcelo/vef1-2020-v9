@@ -70,4 +70,7 @@ export function el(name, ...children) {
  */
 export function formatDate(timestamp) {
   // TODO Útfæra með „vanilla JS“ eða nota date-fns pakka
+  let newTimestamp = new Date();
+  newTimestamp.setTime(timestamp);
+  return newTimestamp;
 }

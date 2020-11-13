@@ -4,9 +4,11 @@
   "description": "Verkefni 9 sækir gögn um jarðskjálfta frá USGS og birtir á korti með [Leaflet](https://leafletjs.com/).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "browser-sync": "browser-sync start --server --files \"*\"",
+    "test": "eslint index.js ./**/*.js",
     "build": "rollup -c",
-    "rollup-watch": "rollup -c -w"
+    "rollup-watch": "rollup -c -w",
+    "dev": "concurrently npm:browser-sync npm:build"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "eslint": "^7.13.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "leaflet": "^1.7.1",
     "rollup": "^2.33.1",
     "rollup-plugin-terser": "^7.0.2"
   },
