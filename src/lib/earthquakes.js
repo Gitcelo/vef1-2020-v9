@@ -10,18 +10,18 @@
  */
 
 const URL = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
- //const URL = './4.5_week.geojson';
+//const URL = './4.5_week.geojson';
 
 export async function fetchEarthquakes() {
   // TODO Sækja gögn frá URL, setja upp villumeðhöndlun og skila
   let result;
-  try{
+  try {
     result = await fetch(URL)
-  } catch(e) {
+  } catch (e) {
     console.error('Error', e);
     return null;
   }
-  if(result.ok) {
+  if (result.ok) {
     return await result.json();
   }
   return null;

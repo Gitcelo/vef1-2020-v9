@@ -9,11 +9,6 @@ function hideLoading() {
   load.parentNode.removeChild(load);
 }
 
-async function getMarker(featured, content) {
-  const marker = createPopup(featured, content);
-  return marker;
-}
-
 async function getgeoJson() {
   const data = await fetchEarthquakes();
   return data.features;
@@ -21,43 +16,43 @@ async function getgeoJson() {
 
 async function addgeoJson() {
   const data = await getgeoJson();
-  if(data === null){
+  if (data === null) {
     console.log('Ekki séns');
     return
   }
   const ulist = document.querySelector('.earthquakes');
   data.forEach((featured) => {
-    const content = el('div', 
-                        el('h3', featured.properties.title),
-                        el('p', `${formatDate(featured.properties.time)}`),
-                        element('a',
-                                { href: featured.properties.url, target: '_blank' },
-                                {},
-                                'Skoða nánar'
-                                )
-                     );
+    const content = el('div',
+      el('h3', featured.properties.title),
+      el('p', `${formatDate(featured.properties.time)}`),
+      element('a',
+        { href: featured.properties.url, target: '_blank' },
+        {},
+        'Skoða nánar'
+      )
+    );
     const marker = createPopup(featured, content);
     ulist.appendChild(
       el('li',
         el('div',
           el('h2', featured.properties.title),
-          el('dl', 
+          el('dl',
             el('dt', 'Tími'),
             el('dd', `${formatDate(featured.properties.time)}`),
             el('dt', 'Styrkur'),
             el('dd', featured.properties.mag + ' á Richter')
           ),
-          el('div', 
-            element('button', 
-                    { class: 'buttons' },
-                    { click: () => { marker.openPopup(); } },
-                      'Sjá á korti'
-                    ),
+          el('div',
+            element('button',
+              { class: 'buttons' },
+              { click: () => { marker.openPopup(); } },
+              'Sjá á korti'
+            ),
             element('a',
-                    { href: featured.properties.url, target: '_blank' },
-                    {},
-                    'Skoða nánar'
-                  )
+              { href: featured.properties.url, target: '_blank' },
+              {},
+              'Skoða nánar'
+            )
           )
         )
       )
@@ -67,13 +62,7 @@ async function addgeoJson() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Hér er allt „vírað“ saman
-
   const kort = document.querySelector('.map');
   init(kort);
   addgeoJson();
-  //addgeoJson(URL, kort);
-  /*fetchEarthquakes.then((data) => {
-    addgeoJson(data.result)
-  })*/
 });

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "browser-sync": "browser-sync start --server --files \"*\"",
-    "test": "eslint index.js ./**/*.js",
+    "test": "eslint ./src/index.js ./**/*.js",
     "build": "rollup -c",
     "rollup-watch": "rollup -c -w",
     "dev": "concurrently npm:browser-sync npm:build"
@@ -37,6 +37,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1"
+    "@babel/polyfill": "^7.12.1",
+    "date-fns": "^2.16.1"
   }
 }

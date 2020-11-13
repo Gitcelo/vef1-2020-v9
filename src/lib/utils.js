@@ -20,7 +20,7 @@ import { format } from "date-fns";
  * @param  {...any} children List of elements or strings to append to element.
  * @returns {object} HTML element.
  */
-export function element(name, attributes = null, events = null,...children) {
+export function element(name, attributes = null, events = null, ...children) {
   const el = document.createElement(name);
 
   for (const child of children) {
@@ -70,7 +70,6 @@ export function el(name, ...children) {
  */
 export function formatDate(timestamp) {
   // TODO Útfæra með „vanilla JS“ eða nota date-fns pakka
-  let newTimestamp = new Date();
-  newTimestamp.setTime(timestamp);
+  let newTimestamp = format(new Date(timestamp), 'dd.MM.yyyy hh:mm:ss');
   return newTimestamp;
 }

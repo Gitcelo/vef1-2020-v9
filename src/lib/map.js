@@ -19,7 +19,7 @@ export function createPopup(geojson, content) {
 export function init(el) {
   // TODO
   map = L.map(el, {
-    center: [0.0,0.0],
+    center: [0.0, 0.0],
     zoom: 2
   });
   // Bætum við "tiles" frá OSM sem eru open source. Gætum líka
